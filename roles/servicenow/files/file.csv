@@ -1,0 +1,5 @@
+Environment   	CI	 priority impact    start_date                  end_date      Assignment_group  Assignee
+DEV_4	       Acrobat	   2	    3       2018-01-02 08:00:00    2018-01-02 14:00:00   Network         David Loo
+DEV_5	       AD-aware    1  	    1       2018-01-03 10:00:00    2018-01-03 16:00:00   Database        Fred Luddy
+DEV_6          Access      3	    3	    2018-01-04 14:00:00	   2018-01-04 23:00:00	 Software        Beth Anglin        
+DEV_7	       AEEnable    4	    4       2018-01-05 13:00:00	   2018-01-05 22:00:00	 Hardware        Bow Ruggeri  		 
