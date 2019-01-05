@@ -1,19 +1,19 @@
 ---
-- shell: cat /ansible/file.csv | awk 'NR>1 {print$1}'
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$1}'
   register: env
-- shell: cat /ansible/file.csv | awk 'NR>1 {print$2}'
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$2}'
   register: cmdb
-- shell: cat /ansible/file.csv | awk 'NR>1 {print$3}'
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$3}'
   register: priority
-- shell: cat /ansible/file.csv | awk 'NR>1 {print$4}'
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$4}'
   register: impact
-- shell: cat /ansible/ file.csv | awk 'NR>1 {print$5 " " $6}'
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$5}'
   register: start_date
-- shell: cat /ansible/file.csv | awk 'NR>1 {print$7 " " $8}'
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$6}'
   register: end_date
-- shell: cat /ansible/file.csv | awk 'NR>1 {print$9}'
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$7}'
   register: assignment_group
-- shell: cat /ansible/file.csv | awk 'NR>1 {print$10 " " $11}'
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$8}'
   register: assignee
 - name: "Creating Change"
   snow_record:
