@@ -1,4 +1,5 @@
 ---
+- shell: xlsx2csv patchexcel.xlsx file.csv
 - shell: cat file.csv | awk -F ',' 'NR>1 {print$1}'
   register: env
 - shell: cat file.csv | awk -F ',' 'NR>1 {print$2}'
