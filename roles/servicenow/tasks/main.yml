@@ -42,4 +42,5 @@
      - "{{end_date.stdout.split('\n')}}"
      - "{{assignment_group.stdout.split('\n')}}"
      - "{{assignee.stdout.split('\n')}}"
+- shell: rm -f file.csv
           
