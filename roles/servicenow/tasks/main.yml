@@ -1,0 +1,46 @@
+---
+- shell: xlsx2csv patchexcel.xlsx file.csv
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$1}'
+  register: env
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$2}'
+  register: cmdb
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$3}'
+  register: priority
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$4}'
+  register: impact
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$5}'
+  register: start_date
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$6}'
+  register: end_date
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$7}'
+  register: assignment_group
+- shell: cat file.csv | awk -F ',' 'NR>1 {print$8}'
+  register: assignee
+- name: "Creating Change"
+  snow_record:
+     username: "{{ snow_username }}"
+     password: "{{ snow_password }}"
+     instance: "{{ snow_instance }}"
+     state: present
+     table: change_request
+     data:
+        short_description: "{{item.0}} change has ben created succesfully with {{item.1}} configuration item via ansible"
+        cmdb_ci: "{{item.1}}"
+        priority: "{{item.2}}"
+        impact: "{{item.3}}"
+        work_notes: "Testing with change creation"     
+        start_date: "{{item.4}}"
+        end_date: "{{item.5}}"
+        assignment_group: "{{item.6}}"
+        assigned_to: "{{item.7}}"
+  with_together:
+     - "{{env.stdout.split('\n')}}"
+     - "{{cmdb.stdout.split('\n')}}"
+     - "{{priority.stdout.split('\n')}}"
+     - "{{impact.stdout.split('\n')}}"
+     - "{{start_date.stdout.split('\n')}}"
+     - "{{end_date.stdout.split('\n')}}"
+     - "{{assignment_group.stdout.split('\n')}}"
+     - "{{assignee.stdout.split('\n')}}"
+- shell: rm -f file.csv
+          
