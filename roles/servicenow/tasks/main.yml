@@ -1,20 +1,19 @@
 ---
-- shell: xlsx2csv patchexcel.xlsx file.csv
-- shell: cat file.csv | awk -F ',' 'NR>1 {print$1}'
+- shell: cat {{filename}} | awk 'NR>1 {print$1}'
   register: env
-- shell: cat file.csv | awk -F ',' 'NR>1 {print$2}'
+- shell: cat {{filename}} | awk 'NR>1 {print$2}'
   register: cmdb
-- shell: cat file.csv | awk -F ',' 'NR>1 {print$3}'
+- shell: cat {{filename}} | awk 'NR>1 {print$3}'
   register: priority
-- shell: cat file.csv | awk -F ',' 'NR>1 {print$4}'
+- shell: cat {{filename}} | awk 'NR>1 {print$4}'
   register: impact
-- shell: cat file.csv | awk -F ',' 'NR>1 {print$5}'
+- shell: cat {{filename}} | awk 'NR>1 {print$5}'
   register: start_date
-- shell: cat file.csv | awk -F ',' 'NR>1 {print$6}'
+- shell: cat {{filename}} | awk 'NR>1 {print$6}'
   register: end_date
-- shell: cat file.csv | awk -F ',' 'NR>1 {print$7}'
+- shell: cat {{filename}} | awk 'NR>1 {print$7}'
   register: assignment_group
-- shell: cat file.csv | awk -F ',' 'NR>1 {print$8}'
+- shell: cat {{filename}} | awk 'NR>1 {print$8}'
   register: assignee
 - name: "Creating Change"
   snow_record:
@@ -24,7 +23,7 @@
      state: present
      table: change_request
      data:
-        short_description: "{{item.0}} change has ben created succesfully with {{item.1}} configuration item via ansible"
+        short_description: "Testing change by sangeetha"
         cmdb_ci: "{{item.1}}"
         priority: "{{item.2}}"
         impact: "{{item.3}}"
